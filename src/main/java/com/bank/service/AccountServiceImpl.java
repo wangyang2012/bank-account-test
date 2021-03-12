@@ -34,7 +34,14 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Override
 	public void withdrawal(Account account, BigDecimal amount) throws BankException {
-		
+		verifyAccountAndAmount(account, amount);
+
+		if (amount.compareTo(account.getBalance()) > 0) {
+			throw new BusinessException("Amount cannot be bigger than account balance");
+		}
+		account.setBalance(account.getBalance().subtract(amount));
+
+		this.operationService.createOperation(account, OperationActionEnum.WITHDRAWAL, amount);
 	}
 
 	private void verifyAccountAndAmount(Account account, BigDecimal amount) throws TechnicalException, BusinessException {
