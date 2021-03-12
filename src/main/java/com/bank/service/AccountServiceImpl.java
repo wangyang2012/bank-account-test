@@ -21,4 +21,9 @@ public class AccountServiceImpl implements IAccountService {
 		}
 		return new Account(IdUtil.getNextAccountId(), balance, new ArrayList<>());
 	}
+
+	@Override
+	public void deposit(Account account, BigDecimal amount) throws BankException {
+
+	}
 }

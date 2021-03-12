@@ -6,4 +6,12 @@ import java.math.BigDecimal;
 
 public interface IAccountService {
     Account createAccount(BigDecimal balance) throws BankException;
+
+    /**
+     * Deposite amount to account
+     * @param account
+     * @param amount
+     * @throws Exception
+     */
+    void deposit(Account account, BigDecimal amount) throws BankException;
 }
