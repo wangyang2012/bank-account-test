@@ -25,4 +25,9 @@ public class OperationServiceImpl implements IOperationService {
 		return operation;
 	}
 
+	@Override
+	public String printOperationToString(Operation operation) throws BankException {
+		return null;
+	}
+
 }

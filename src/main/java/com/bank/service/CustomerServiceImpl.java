@@ -18,4 +18,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		return new Customer(IdUtil.getNextCustomerId(), name, accountService.createAccount(BigDecimal.ZERO));
 	}
+
+	@Override
+	public void printCustomerBalance(Customer customer) throws BankException {
+
+	}
 }

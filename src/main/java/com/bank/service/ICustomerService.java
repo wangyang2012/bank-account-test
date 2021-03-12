@@ -5,4 +5,5 @@ import com.bank.model.exception.BankException;
 
 public interface ICustomerService {
 	Customer createCustomer(String name) throws BankException;
+	void printCustomerBalance(Customer customer) throws BankException;
 }
