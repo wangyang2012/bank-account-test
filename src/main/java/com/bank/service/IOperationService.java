@@ -9,4 +9,5 @@ import java.math.BigDecimal;
 
 public interface IOperationService {
 	Operation createOperation(Account account, OperationActionEnum action, BigDecimal amount) throws BankException;
+	String printOperationToString(Operation operation) throws BankException;
 }

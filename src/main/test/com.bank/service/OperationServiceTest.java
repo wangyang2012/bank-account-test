@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 class OperationServiceTest {
-    private IOperationService operationService= new OperationServiceImpl();
+    private IOperationService operationService = new OperationServiceImpl();
 
     // Create operation tests
     @Test
@@ -36,6 +36,21 @@ class OperationServiceTest {
         Account account = new Account(1L, BigDecimal.ZERO, new ArrayList<>());
         Assertions.assertThrows(BusinessException.class, () -> {
             this.operationService.createOperation(account, OperationActionEnum.DEPOSIT, new BigDecimal(-1));
+        });
+    }
+
+    // Print operation tests
+    @Test
+    void print_operation_with_correct_data() throws Exception {
+        Account account = new Account(1L, BigDecimal.ZERO, new ArrayList<>());
+        Operation operation = this.operationService.createOperation(account, OperationActionEnum.DEPOSIT, BigDecimal.TEN);
+        this.operationService.printOperationToString(operation);
+    }
+
+    @Test
+    void print_operation_with_null_expect_exception() {
+        Assertions.assertThrows(TechnicalException.class, () -> {
+            this.operationService.printOperationToString(null);
         });
     }
 }
