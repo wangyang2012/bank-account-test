@@ -32,6 +32,11 @@ public class AccountServiceImpl implements IAccountService {
 		this.operationService.createOperation(account, OperationActionEnum.DEPOSIT, amount);
 	}
 
+	@Override
+	public void withdrawal(Account account, BigDecimal amount) throws BankException {
+		
+	}
+
 	private void verifyAccountAndAmount(Account account, BigDecimal amount) throws TechnicalException, BusinessException {
 		if (account == null || amount == null) {
 			throw new TechnicalException("Account or amount cannot be null");
