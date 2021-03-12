@@ -34,4 +34,28 @@ public class AccountServiceTest {
             this.accountService.createAccount(new BigDecimal(-1));
         });
     }
+
+    // Deposit tests
+    @Test
+    public void deposit_with_correct_data() throws Exception {
+        Account account = this.accountService.createAccount(BigDecimal.ONE);
+        this.accountService.deposit(account, BigDecimal.ONE);
+        Assertions.assertEquals(new BigDecimal(2), account.getBalance());
+    }
+
+    @Test
+    public void deposit_with_null_expect_exception() {
+        Assertions.assertThrows(TechnicalException.class, () -> {
+            this.accountService.deposit(null, null);
+        });
+    }
+
+    @Test
+    public void deposit_with_negative_balance_expect_exception() throws Exception {
+        Account account = this.accountService.createAccount(BigDecimal.ONE);
+        Assertions.assertThrows(BusinessException.class, () -> {
+            this.accountService.deposit(account, new BigDecimal(-1));
+        });
+    }
+
 }
