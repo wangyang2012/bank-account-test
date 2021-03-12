@@ -58,4 +58,34 @@ public class AccountServiceTest {
         });
     }
 
+    // Withdrawal tests
+    @Test
+    public void withdrawal_with_correct_data() throws Exception {
+        Account account = this.accountService.createAccount(BigDecimal.TEN);
+        this.accountService.withdrawal(account, BigDecimal.ONE);
+        Assertions.assertEquals(new BigDecimal(9), account.getBalance());
+    }
+
+    @Test
+    public void withdrawal_with_null_expect_exception() {
+        Assertions.assertThrows(TechnicalException.class, () -> {
+            this.accountService.withdrawal(null, null);
+        });
+    }
+
+    @Test
+    public void withdrawal_with_negative_amount_expect_exception() throws Exception {
+        Account account = this.accountService.createAccount(BigDecimal.ONE);
+        Assertions.assertThrows(BusinessException.class, () -> {
+            this.accountService.withdrawal(account, new BigDecimal(-1));
+        });
+    }
+
+    @Test
+    public void withdrawal_with_amount_bigger_than_balance_expect_exception() throws Exception {
+        Account account = this.accountService.createAccount(BigDecimal.ONE);
+        Assertions.assertThrows(BusinessException.class, () -> {
+            this.accountService.withdrawal(account, BigDecimal.TEN);
+        });
+    }
 }

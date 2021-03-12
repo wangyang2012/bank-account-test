@@ -14,4 +14,12 @@ public interface IAccountService {
      * @throws Exception
      */
     void deposit(Account account, BigDecimal amount) throws BankException;
+
+    /**
+     * Withdrawal amount from account
+     * @param account
+     * @param amount
+     * @throws Exception
+     */
+    void withdrawal(Account account, BigDecimal amount) throws BankException;
 }
